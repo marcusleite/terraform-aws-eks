@@ -1,6 +1,5 @@
 module "eks_al2023" {
-  source  = "terraform-aws-modules/eks/aws"
-  version = "~> 21.0"
+  source = "../.."
 
   name               = "${local.name}-al2023"
   kubernetes_version = "1.33"
@@ -25,6 +24,9 @@ module "eks_al2023" {
       # Starting on 1.30, AL2023 is the default AMI type for EKS managed node groups
       instance_types = ["m6i.large"]
       ami_type       = "AL2023_x86_64_STANDARD"
+
+      # Optional parameter to add sourceCondition on Trust Policy
+      iam_role_source_account_condition = true
 
       min_size = 2
       max_size = 5
