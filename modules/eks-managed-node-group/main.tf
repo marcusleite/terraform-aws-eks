@@ -591,6 +591,16 @@ data "aws_iam_policy_document" "assume_role_policy" {
       type        = "Service"
       identifiers = ["ec2.amazonaws.com"]
     }
+
+    dynamic "condition" {
+      for_each = var.iam_role_source_account_condition ? [1] : []
+
+      content {
+        test     = "StringEquals"
+        variable = "aws:SourceAccount"
+        values   = [local.account_id]
+      }
+    }
   }
 }
 

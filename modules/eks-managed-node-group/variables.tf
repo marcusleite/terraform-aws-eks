@@ -657,6 +657,13 @@ variable "iam_role_permissions_boundary" {
   default     = null
 }
 
+variable "iam_role_source_account_condition" {
+  description = "Whether to add an `aws:SourceAccount` condition to the node IAM role's trust policy, scoped to the current account"
+  type        = bool
+  default     = false
+  nullable    = false
+}
+
 variable "iam_role_attach_cni_policy" {
   description = "Whether to attach the `AmazonEKS_CNI_Policy`/`AmazonEKS_CNI_IPv6_Policy` IAM policy to the IAM IAM role. WARNING: If set `false` the permissions must be assigned to the `aws-node` DaemonSet pods via another method or nodes will not be able to join the cluster"
   type        = bool

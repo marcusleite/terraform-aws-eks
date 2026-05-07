@@ -363,18 +363,19 @@ module "eks_managed_node_group" {
   private_dns_name_options           = each.value.private_dns_name_options
 
   # IAM role
-  create_iam_role               = each.value.create_iam_role
-  iam_role_arn                  = each.value.iam_role_arn
-  iam_role_name                 = each.value.iam_role_name
-  iam_role_use_name_prefix      = each.value.iam_role_use_name_prefix
-  iam_role_path                 = each.value.iam_role_path
-  iam_role_description          = each.value.iam_role_description
-  iam_role_permissions_boundary = each.value.iam_role_permissions_boundary
-  iam_role_tags                 = each.value.iam_role_tags
-  iam_role_attach_cni_policy    = each.value.iam_role_attach_cni_policy
-  iam_role_additional_policies  = lookup(each.value, "iam_role_additional_policies", null)
-  create_iam_role_policy        = each.value.create_iam_role_policy
-  iam_role_policy_statements    = each.value.iam_role_policy_statements
+  create_iam_role                   = each.value.create_iam_role
+  iam_role_arn                      = each.value.iam_role_arn
+  iam_role_name                     = each.value.iam_role_name
+  iam_role_use_name_prefix          = each.value.iam_role_use_name_prefix
+  iam_role_path                     = each.value.iam_role_path
+  iam_role_description              = each.value.iam_role_description
+  iam_role_permissions_boundary     = each.value.iam_role_permissions_boundary
+  iam_role_source_account_condition = each.value.iam_role_source_account_condition
+  iam_role_tags                     = each.value.iam_role_tags
+  iam_role_attach_cni_policy        = each.value.iam_role_attach_cni_policy
+  iam_role_additional_policies      = lookup(each.value, "iam_role_additional_policies", null)
+  create_iam_role_policy            = each.value.create_iam_role_policy
+  iam_role_policy_statements        = each.value.iam_role_policy_statements
 
   # Security group
   vpc_security_group_ids            = compact(concat([local.node_security_group_id], each.value.vpc_security_group_ids))
